@@ -43,8 +43,13 @@ function App() {
 
   return (
     <div className="App">
-      {!gameConfigured && <GameSettingsForm getGameSettings={getGameSettings}/>}
-      {gameConfigured && <ScoreBoard players={players} updatePlayer={updatePlayer}/>}
+      <div class="flex justify-center items-center h-screen bg-orange-300">
+        <div>
+          <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Score Tracker</h1> 
+          {!gameConfigured && <GameSettingsForm getGameSettings={getGameSettings}/>}
+          {gameConfigured && <ScoreBoard players={players} updatePlayer={updatePlayer}/>}
+        </div>
+      </div>
     </div>
   );
 }
