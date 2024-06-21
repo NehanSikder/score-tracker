@@ -2,8 +2,8 @@ import { useState } from "react";
 
 function GameSettingsForm({getGameSettings}){
     
-    const [numberOfPlayers, setNumberOfPlayers] = useState("");
-    const [startingScore, setStartingScore] = useState("");
+    const [numberOfPlayers, setNumberOfPlayers] = useState("1");
+    const [startingScore, setStartingScore] = useState("0");
     const [subtract, setSubtract] = useState(false);
 
     const subtractHandler = () => {
