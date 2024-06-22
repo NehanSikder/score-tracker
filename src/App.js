@@ -19,7 +19,7 @@ function App() {
     setGameConfigured(true)
     var tmp = [];
     for (var i = 0;i < numberOfPlayers; i++){
-      tmp.push({id: i, score: startingScore, scores: []})
+      tmp.push({id: i, score: startingScore, scores: [startingScore]})
     }
     setPlayers(tmp)
     setSubtract(subtract)
