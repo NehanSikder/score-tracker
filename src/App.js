@@ -26,22 +26,31 @@ function App() {
     setShowReset(true)
   }
 
-  function updatePlayer(id, score){
-    if (subtract) {
-      players[id].score = players[id].score - score
-    } else {
-      players[id].score = players[id].score + score
-    }
-      // players[id].scores.push(score)
-      // need to rerender her
-
+  function updatePlayer(id, score, scoreIndex){
+    if (scoreIndex != null){
+      if (subtract) {
+        players[id].score = players[id].score + players[id].scores[scoreIndex] - score
+      } else{
+        players[id].score = players[id].score - players[id].scores[scoreIndex] + score
+      }
       let playersCopy = [...players];
-      console.log(playersCopy)
-      console.log(players)
+      let player = {...playersCopy[id]};
+      player.scores[scoreIndex] = score
+      playersCopy[id] = player
+      setPlayers(playersCopy)
+    } else {
+      if (subtract) {
+        players[id].score = players[id].score - score
+      } else {
+        players[id].score = players[id].score + score
+      }
+      let playersCopy = [...players];
       let player = {...playersCopy[id]};
       player.scores.push(score)
       playersCopy[id] = player
       setPlayers(playersCopy)
+    }
+      
   }
 
   const handleReset = () =>{

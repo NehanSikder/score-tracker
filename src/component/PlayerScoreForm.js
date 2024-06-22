@@ -1,8 +1,14 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 
-function PlayerScoreForm({ updateScore, player }){
+function PlayerScoreForm({ updateScore, player, scoreIndex }){
 
     const [score, setScore] = useState("")
+
+    useEffect(() => {
+        if (scoreIndex != null){
+            setScore(player.scores[scoreIndex])
+        }
+      }, [player, scoreIndex])
 
     const handleScore = (event) => {
         setScore(event.target.value)
@@ -14,8 +20,19 @@ function PlayerScoreForm({ updateScore, player }){
             // TODO: Error handling
             return
         }
+        setScore("")
         updateScore(intScore)
 
+    }
+
+    function renderOldScore(){
+        if (scoreIndex != null){
+            return (
+                <div class="mb-2">
+                    Old Score: {player.scores[scoreIndex]}
+                </div>
+            )
+        }
     }
 
 
@@ -23,8 +40,9 @@ function PlayerScoreForm({ updateScore, player }){
         <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
             <div class="mb-2">
                 <h1 class="block text-lg font-bold mb-2">Player {player.id + 1}</h1>
-                Current Score: {player.score}
+                Total Score: {player.score}
             </div>
+            {renderOldScore()}
             <div class="mb-2">
                 <div>
                     <label class="block text-black-700 text-sm font-bold mb-2">New Score: </label>
