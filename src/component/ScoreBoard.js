@@ -7,13 +7,19 @@ function ScoreBoard({players, updatePlayer}){
     const [id, setId] = useState(0)
     // update values
     
-    const [nextId, setNextId] = useState(0)
+    const [nextId, setNextId] = useState(null)
     const [scoreIndex, setScoreIndex] = useState(null)
-    const [oldScore, setOldScore] = useState("")
 
     function updateScore(score) {
-        updatePlayer(id, score)
-        setId((id + 1) % players.length)
+        updatePlayer(id, score, scoreIndex)
+        if (scoreIndex != null){
+            setScoreIndex(null)
+            setId(nextId)
+            setNextId(null)
+        } else {
+            setId((id + 1) % players.length)
+        }
+        
     }
 
     return (
@@ -34,9 +40,10 @@ function ScoreBoard({players, updatePlayer}){
                                 {player.scores.map((val, scoreIndex) => (
                                     <td class="whitespace-nowrap px-2">
                                         <button onClick={()=> {
-                                            setNextId((id + 1) % players.length)
+                                            if (nextId == null){
+                                                setNextId((id + 1) % players.length)
+                                            }
                                             setScoreIndex(scoreIndex)
-                                            setOldScore(val)
                                             setId(player.id)
                                         }}>{val}</button>
                                     </td>
