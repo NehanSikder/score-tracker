@@ -41,7 +41,7 @@ function ScoreBoard({players, updatePlayer}){
                                     <td class="whitespace-nowrap px-2">
                                         <button onClick={()=> {
                                             if (nextId == null){
-                                                setNextId((id + 1) % players.length)
+                                                setNextId(id)
                                             }
                                             setScoreIndex(scoreIndex)
                                             setId(player.id)
