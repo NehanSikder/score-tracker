@@ -5,19 +5,15 @@ import PlayerScoreForm from "./PlayerScoreForm";
 function ScoreBoard({players, updatePlayer}){
     
     const [id, setId] = useState(0)
+    // update values
+    
+    const [nextId, setNextId] = useState(0)
+    const [scoreIndex, setScoreIndex] = useState(null)
+    const [oldScore, setOldScore] = useState("")
 
     function updateScore(score) {
         updatePlayer(id, score)
         setId((id + 1) % players.length)
-    }
-
-    function renderScore(scores){
-        var text = ""
-        scores.forEach(element => {
-            text += element + " - "
-        });
-        return text
-
     }
 
     return (
@@ -27,23 +23,31 @@ function ScoreBoard({players, updatePlayer}){
                     <thead class="border-b border-neutral-200 font-medium dark:border-white/10">
                         <tr>
                             <th>Player</th>
-                            <th></th>
                             <th>Score</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {players.map((player) => {
-                            return <tr class="border-b border-neutral-200 dark:border-white/10">
-                                        <td class="whitespace-nowrap font-medium">Player {player.id + 1}</td>
-                                        <td class="whitespace-nowrap px-4">{renderScore(player.scores)}</td>
-                                        <td class="whitespace-nowrap px-4">{player.score}</td>
-                                </tr>
-                        })}
+                        {players.map((player) => (
+                            <tr class="border-b border-neutral-200 dark:border-white/10">
+                                <td>Player {player.id + 1}</td>
+                                <td class="whitespace-nowrap px-2 py-2">{player.score}</td>
+                                {player.scores.map((val, scoreIndex) => (
+                                    <td class="whitespace-nowrap px-2">
+                                        <button onClick={()=> {
+                                            setNextId((id + 1) % players.length)
+                                            setScoreIndex(scoreIndex)
+                                            setOldScore(val)
+                                            setId(player.id)
+                                        }}>{val}</button>
+                                    </td>
+                                ))}
+                            </tr>
+                        ))}
                     </tbody>
                     </table>
             </div>
             <div>
-                <PlayerScoreForm updateScore={updateScore} player={players[id]}/>
+                <PlayerScoreForm updateScore={updateScore} player={players[id]} scoreIndex={scoreIndex}/>
             </div>
         </div>
     )
