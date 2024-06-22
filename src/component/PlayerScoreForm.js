@@ -4,6 +4,7 @@ function PlayerScoreForm({ updateScore, player, scoreIndex }){
 
     const [score, setScore] = useState("")
 
+
     useEffect(() => {
         if (scoreIndex != null){
             setScore(player.scores[scoreIndex])
@@ -17,7 +18,7 @@ function PlayerScoreForm({ updateScore, player, scoreIndex }){
     const handleButtonClick = () => {
         const intScore = parseInt(score)
         if (isNaN(intScore)) {
-            // TODO: Error handling
+            setScore("")
             return
         }
         setScore("")
@@ -47,7 +48,7 @@ function PlayerScoreForm({ updateScore, player, scoreIndex }){
                 <div>
                     <label class="block text-black-700 text-sm font-bold mb-2">New Score: </label>
                 </div>      
-                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" value={score} onChange={handleScore} /> 
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" value={score} onChange={handleScore} placeholder="Please enter number"/> 
             </div>
             <div class="mb-2">
                 <button class="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onClick={handleButtonClick}>Update</button>
