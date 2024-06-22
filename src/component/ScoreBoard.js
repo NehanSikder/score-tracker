@@ -24,8 +24,8 @@ function ScoreBoard({players, updatePlayer}){
 
     return (
         <div>
-            <div class="mb-3 bg-white shadow-md rounded px-8 pt-6 pb-8">
-                <table class="table-auto text-center">
+            <div class="relative overflow-x-auto mb-3 bg-white shadow-md rounded px-8 pt-6 pb-8">
+                <table class="w-full table-auto text-center">
                     <thead class="border-b border-neutral-200 font-medium dark:border-white/10">
                         <tr>
                             <th>Player</th>
