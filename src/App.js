@@ -84,7 +84,7 @@ function App() {
   return (
     <div className="App">
       <div class="flex justify-center items-center h-screen bg-orange-300">
-        <div class="max-w-2xl sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg">
+        <div class="sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg 2xs:max-w-72 xs:max-w-xs">
           {!showReset && <h1 class="mb-1 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Score Tracker</h1>}
           {!gameConfigured && <GameSettingsForm getGameSettings={getGameSettings}/>}
           {showReset && <div>
